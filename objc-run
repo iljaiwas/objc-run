@@ -1,0 +1,48 @@
+#!/bin/bash
+
+if [[ $# -lt 1 ]]
+then 
+	echo "objc-run usage: objc-run file.m [params]"
+	exit 1
+fi
+
+filepath=$1
+filename=$(basename "$1")
+appname="${filename%.*}"
+dirname=`dirname $1`
+shift
+
+# check if there's already a file with the same name as our compiled app, if so exit
+if [[ -f "$dirname/$appname" ]]
+then
+	echo "objc-run: file already exists at dirname/$appname ... exiting"
+	exit 1
+fi
+
+#remove first line if it starts with '#!', as the it is invalid in C
+line=$(head -n 1 "$filepath")
+if [[ $line="#!*" ]]
+then 
+	tail -n +2 "$filepath" > "$filepath.objc-run-patched.m"
+	filepath=$filepath.objc-run-patched.m
+fi
+
+# compile the file
+clang -o "$dirname/$appname" -Wall -std=c99 "$filepath" -framework Foundation -lobjc -fobjc-arc
+clangExitCode=$?
+
+# if we had to patch the input file because of #!, remove patched copy 
+if [[ $filepath="*objc-run-patched.m" ]]
+then
+	rm "$filepath"
+fi
+
+# on clang success, run compiled application and remove it
+if [[ $clangExitCode -eq 0 ]]
+then 
+	"$dirname/$appname" $@
+	rm "$dirname/$appname"
+else
+	echo "objc-run usage: clang returned with error"
+	exit 1
+fi
