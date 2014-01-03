@@ -21,16 +21,15 @@ fi
 
 #remove any line that starts with '#!', as it is invalid in C
 sed -e '/^#!/d' $filepath > ${filepath}.objc-run-patched.m
+filepath = ${filepath}.objc-run-patched.m
 
 # compile the file
 clang -o "$dirname/$appname" -Wall -std=c99 "$filepath" -framework Foundation -lobjc -fobjc-arc
 clangExitCode=$?
 
-# if we had to patch the input file because of #!, remove patched copy 
-if [[ $filepath="*objc-run-patched.m" ]]
-then
-	rm -f "$filepath"
-fi
+# remove patched copy 
+rm -f "$filepath"
+
 
 # on clang success, run compiled application and remove it
 if [[ $clangExitCode -eq 0 ]]
