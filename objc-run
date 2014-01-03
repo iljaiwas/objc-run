@@ -7,9 +7,9 @@ then
 fi
 
 filepath=$1
-filename=$(basename "$1")
+filename=$(basename $filepath)
 appname="${filename%.*}"
-dirname=`dirname $1`
+dirname=$(dirname $filepath)
 shift
 
 # check if there's already a file with the same name as our compiled app, if so exit
@@ -19,13 +19,8 @@ then
 	exit 1
 fi
 
-#remove first line if it starts with '#!', as the it is invalid in C
-line=$(head -n 1 "$filepath")
-if [[ $line="#!*" ]]
-then 
-	tail -n +2 "$filepath" > "$filepath.objc-run-patched.m"
-	filepath=$filepath.objc-run-patched.m
-fi
+#remove any line that starts with '#!', as it is invalid in C
+sed -e '/^#!/d' $filepath > ${filepath}.objc-run-patched.m
 
 # compile the file
 clang -o "$dirname/$appname" -Wall -std=c99 "$filepath" -framework Foundation -lobjc -fobjc-arc
@@ -34,14 +29,14 @@ clangExitCode=$?
 # if we had to patch the input file because of #!, remove patched copy 
 if [[ $filepath="*objc-run-patched.m" ]]
 then
-	rm "$filepath"
+	rm -f "$filepath"
 fi
 
 # on clang success, run compiled application and remove it
 if [[ $clangExitCode -eq 0 ]]
 then 
 	"$dirname/$appname" $@
-	rm "$dirname/$appname"
+	rm -f "$dirname/$appname"
 else
 	echo "objc-run usage: clang returned with error"
 	exit 1
