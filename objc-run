@@ -40,3 +40,6 @@ else
 	echo "objc-run usage: clang returned with error"
 	exit 1
 fi
+
+# explicite exit with no error
+exit 0
