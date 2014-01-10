@@ -6,10 +6,10 @@ then
 	exit 1
 fi
 
-filepath=$1
-filename=$(basename $filepath)
+filepath="$1"
+filename="$(basename "$filepath")"
 appname="${filename%.*}"
-dirname=$(dirname $filepath)
+dirname="$(dirname "$filepath")"
 shift
 
 # check if there's already a file with the same name as our compiled app, if so exit
@@ -20,8 +20,8 @@ then
 fi
 
 #remove first occurrence of '#!', as this is probably the shebang
-sed -e '/^#!\//,1d' $filepath > ${filepath}.objc-run-patched.m
-filepath=${filepath}.objc-run-patched.m
+sed -e '/^#!\//,1d' "$filepath" > "${filepath}.objc-run-patched.m"
+filepath="${filepath}.objc-run-patched.m"
 
 # compile the file
 clang -o "$dirname/$appname" -Wall -std=c99 "$filepath" -framework Foundation -lobjc -fobjc-arc
