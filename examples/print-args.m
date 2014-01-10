@@ -1,3 +1,5 @@
+#!/usr/bin/env /usr/bin/objc-run
+
 #import <stdio.h>
 
 int main( int argc, const char *argv[] ) {
