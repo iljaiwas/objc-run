@@ -27,7 +27,7 @@ clangExitCode=$?
 # on clang success, run compiled application and remove it
 if [[ $clangExitCode -eq 0 ]]
 then 
-	"$dirname/$appname" $@
+	"$dirname/$appname" "$@"
 	rm -f "$dirname/$appname"
 else
 	echo "objc-run usage: clang returned with error"
