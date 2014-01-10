@@ -13,7 +13,7 @@ shift
 
 # check if there's already a file with the same name as our compiled app, if so exit
 if [[ -f "$dirname/$appname" ]]; then
-	echo "objc-run: file already exists at dirname/$appname ... exiting" 1>&2
+	echo "objc-run: file already exists at $dirname/$appname ... exiting" 1>&2
 	exit 1
 fi
 
