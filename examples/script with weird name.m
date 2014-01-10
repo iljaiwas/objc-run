@@ -2,6 +2,6 @@
 #import <stdio.h>
 
 int main( int argc, const char *argv[] ) {
-    printf( "hello world\n" );
+    printf( "Wow you ran me even if I have spaces in name!\n" );
     return 0;
 }
