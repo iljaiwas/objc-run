@@ -24,7 +24,7 @@ sed -e '/^#!\//,1d' $filepath > ${filepath}.objc-run-patched.m
 filepath=${filepath}.objc-run-patched.m
 
 # compile the file
-clang -o "$dirname/$appname" -Wall -std=c99 "$filepath" -framework Foundation -lobjc -fobjc-arc
+clang -o "$dirname/$appname" -Wall -std=c99 "$filepath" -fmodules -framework Foundation -lobjc -fobjc-arc
 clangExitCode=$?
 
 # remove patched copy 
