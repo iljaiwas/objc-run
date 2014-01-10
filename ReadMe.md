@@ -32,3 +32,12 @@ Just insert this as first line in your .m file:
 If you have installed objc-run in a directory different from /usr/bin, you'll need to adjust the path accordingly.
 
 Please note that as long as this line is present, it will produce an error when compiling it directly.
+
+# Self check
+Run:
+
+    $ ./test.bash
+    Done
+    $ echo $?
+    0
+
