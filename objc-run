@@ -6,10 +6,10 @@ then
 	exit 1
 fi
 
-filepath=$1
-filename=$(basename $filepath)
+filepath="$1"
+filename="$(basename "$filepath")"
 appname="${filename%.*}"
-dirname=$(dirname $filepath)
+dirname="$(dirname "$filepath")"
 shift
 
 # check if there's already a file with the same name as our compiled app, if so exit
@@ -21,7 +21,7 @@ fi
 
 # compile the file
 # remove shebangs on first line, first chars only
-clang -o "$dirname/$appname" -Wall -std=c99 -framework Foundation -lobjc -fobjc-arc -fmodules -x objective-c <(awk 'NR>1 || !/^#!/' $filepath)
+clang -o "$dirname/$appname" -Wall -std=c99 -framework Foundation -lobjc -fobjc-arc -fmodules -x objective-c <(awk 'NR>1 || !/^#!/' "$filepath")
 clangExitCode=$?
 
 # on clang success, run compiled application and remove it
