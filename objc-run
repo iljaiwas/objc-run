@@ -1,8 +1,7 @@
 #!/bin/bash
 
-if [[ $# -lt 1 ]]
-then 
-	echo "objc-run usage: objc-run file.m [params]"
+if [[ $# -lt 1 ]]; then 
+	echo "objc-run usage: objc-run file.m [params]" 1>&2
 	exit 1
 fi
 
@@ -13,9 +12,8 @@ dirname="$(dirname "$filepath")"
 shift
 
 # check if there's already a file with the same name as our compiled app, if so exit
-if [[ -f "$dirname/$appname" ]]
-then
-	echo "objc-run: file already exists at dirname/$appname ... exiting"
+if [[ -f "$dirname/$appname" ]]; then
+	echo "objc-run: file already exists at $dirname/$appname ... exiting" 1>&2
 	exit 1
 fi
 
@@ -25,12 +23,11 @@ clang -o "$dirname/$appname" -Wall -std=c99 -framework Foundation -lobjc -fobjc-
 clangExitCode=$?
 
 # on clang success, run compiled application and remove it
-if [[ $clangExitCode -eq 0 ]]
-then 
+if [[ $clangExitCode -eq 0 ]]; then 
 	"$dirname/$appname" "$@"
 	rm -f "$dirname/$appname"
 else
-	echo "objc-run usage: clang returned with error"
+	echo "objc-run usage: clang returned with error" 1>&2
 	exit 1
 fi
 
