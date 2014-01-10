@@ -19,17 +19,10 @@ then
 	exit 1
 fi
 
-#remove first occurrence of '#!', as this is probably the shebang
-sed -e '/^#!\//,1d' $filepath > ${filepath}.objc-run-patched.m
-filepath=${filepath}.objc-run-patched.m
-
 # compile the file
-clang -o "$dirname/$appname" -Wall -std=c99 "$filepath" -framework Foundation -lobjc -fobjc-arc
+# remove shebangs on first line, first chars only
+clang -o "$dirname/$appname" -Wall -std=c99 -framework Foundation -lobjc -fobjc-arc -fmodules -x objective-c <(awk 'NR>1 || !/^#!/' $filepath)
 clangExitCode=$?
-
-# remove patched copy 
-rm -f "$filepath"
-
 
 # on clang success, run compiled application and remove it
 if [[ $clangExitCode -eq 0 ]]
