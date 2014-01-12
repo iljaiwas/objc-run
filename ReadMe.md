@@ -1,6 +1,6 @@
 #About objc-run
 
-objc-run is a shell script which compiles and executes Objective-C source code files.
+objc-run is a shell script which compiles and executes Objective-C source code files. It integrates with [CocoaPods](http://cocoapods.org).
 
 It's perfect for small programming tasks you want to handle in Objective-C, that don't justify setting up a complete Xcode project, e.g. manipulating plist files. Think of it as [CodeRunner](http://krillapps.com/coderunner/) without an user interface. 
 
@@ -9,7 +9,7 @@ Just download the objc-run shell script file and install it in a directory that'
 	
 	chmod u+x objc-run
 
-## BASIC USAGE
+## Basic Usage
 Inside the Terminal, just enter:
 
 	objc-run myfile.m myparam1 myparam2
@@ -33,7 +33,23 @@ If you have installed objc-run in a directory different from /usr/bin, you'll ne
 
 Please note that as long as this line is present, it will produce an error when compiling it directly.
 
+##CocoaPods Integration
+
+You can use [CocoaPods](http://cocoapods.org) modules with objc-run. Just include the contents of your podfile in a C-comment between 'podfile-start' and 'podfile-end', like this: 
+
+	/*
+	podfile-start
+	platform :osx, '10.9'
+	pod 'Barista'
+	podfile-end
+	*/
+	
+[Here](examples/CocoaPodsTest.m) is an example file from the [Barista](https://github.com/stevestreza/Barista) project modified for usage with objc-run.
+
 # Self check
+
+There is a little test script that performs some basic checks. 
+
 Run:
 
     $ ./test.bash
