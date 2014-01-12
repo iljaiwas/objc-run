@@ -44,42 +44,7 @@ You can use [CocoaPods](http://cocoapods.org) modules with objc-run. Just includ
 	podfile-end
 	*/
 	
-Here is an example file from the [Barista](https://github.com/stevestreza/Barista) project modified for usage with objc-run:
-
-	#!/usr/bin/env /usr/bin/objc-run
-
-	/*
-	podfile-start
-	platform :osx, '10.9'
-	pod 'Barista'
-	podfile-end
-	*/
-
-	#import <Foundation/Foundation.h>
-	#import "Barista.h"
-	#import "BARRouter.h"
-
-	int main(int argc, const char * argv[])
-	{
-		@autoreleasepool
-		{
-		BARServer *server = [BARServer serverWithPort:4242];
-		BARRouter *router = [[BARRouter alloc] init];
-		[router addRoute:@"/" forHTTPMethod:@"GET" handler:^BOOL(BARConnection *connection, BARRequest *request, NSDictionary *parameters) {
-			BARResponse *response = [[BARResponse alloc] init];
-			response.responseData = [@"Hello world" dataUsingEncoding:NSUTF8StringEncoding];
-			response.statusCode = 200;
-			[connection sendResponse:response];
-			return YES;
-		}];
-		[server addGlobalMiddleware:router];
-		[server startListening];
-		while(YES){
-			[[NSRunLoop mainRunLoop] run];
-		}
-	}
-    return 0;
-}
+[Here](examples/CocoaPodsTest.m) is an example file from the [Barista](https://github.com/stevestreza/Barista) project modified for usage with objc-run.
 
 # Self check
 
