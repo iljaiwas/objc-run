@@ -1,6 +1,6 @@
 #About objc-run
 
-objc-run is a shell script which compiles and executes Objective-C source code files.
+objc-run is a shell script which compiles and executes Objective-C source code files. It integrates with [CocoaPods](http://cocoapods.org).
 
 It's perfect for small programming tasks you want to handle in Objective-C, that don't justify setting up a complete Xcode project, e.g. manipulating plist files. Think of it as [CodeRunner](http://krillapps.com/coderunner/) without an user interface. 
 
