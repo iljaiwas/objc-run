@@ -9,8 +9,8 @@ function main
 
 	#check if the source file contains an embedded podfile for CocoaPods
 
-	podstart=`awk '/podfile-start/{print NR+1}' $1`
-	podend=`awk '/podfile-end/{print NR-1}' $1`
+	podstart=`awk '/podfile-start/{print NR+1}' "$1"`
+	podend=`awk '/podfile-end/{print NR-1}' "$1"`
 
 	if [ ${#podstart} -gt 0 ]
 	then
