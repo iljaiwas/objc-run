@@ -9,7 +9,7 @@ Just download the objc-run shell script file and install it in a directory that'
 	
 	chmod u+x objc-run
 
-## BASIC USAGE
+## Basic Usage
 Inside the Terminal, just enter:
 
 	objc-run myfile.m myparam1 myparam2
@@ -33,7 +33,58 @@ If you have installed objc-run in a directory different from /usr/bin, you'll ne
 
 Please note that as long as this line is present, it will produce an error when compiling it directly.
 
+##CocoaPods Integration
+
+You can use [CocoaPods](http://cocoapods.org) modules with objc-run. Just include the contents of your podfile in a C-comment between 'podfile-start' and 'podfile-end', like this: 
+
+	/*
+	podfile-start
+	platform :osx, '10.9'
+	pod 'Barista'
+	podfile-end
+	*/
+	
+Here is an example file from the [Barista](https://github.com/stevestreza/Barista) project modified for usage with objc-run:
+
+	#!/usr/bin/env /usr/bin/objc-run
+
+	/*
+	podfile-start
+	platform :osx, '10.9'
+	pod 'Barista'
+	podfile-end
+	*/
+
+	#import <Foundation/Foundation.h>
+	#import "Barista.h"
+	#import "BARRouter.h"
+
+	int main(int argc, const char * argv[])
+	{
+		@autoreleasepool
+		{
+		BARServer *server = [BARServer serverWithPort:4242];
+		BARRouter *router = [[BARRouter alloc] init];
+		[router addRoute:@"/" forHTTPMethod:@"GET" handler:^BOOL(BARConnection *connection, BARRequest *request, NSDictionary *parameters) {
+			BARResponse *response = [[BARResponse alloc] init];
+			response.responseData = [@"Hello world" dataUsingEncoding:NSUTF8StringEncoding];
+			response.statusCode = 200;
+			[connection sendResponse:response];
+			return YES;
+		}];
+		[server addGlobalMiddleware:router];
+		[server startListening];
+		while(YES){
+			[[NSRunLoop mainRunLoop] run];
+		}
+	}
+    return 0;
+}
+
 # Self check
+
+There is a little test script that performs some basic checks. 
+
 Run:
 
     $ ./test.bash
