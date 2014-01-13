@@ -134,227 +134,47 @@ EOF
 
 function writePBXFile
 {
-cat <<EOF > "$1"
-// !$*UTF8*$!
-{
-	archiveVersion = 1;
-	classes = {
-	};
-	objectVersion = 46;
-	objects = {
-
-/* Begin PBXBuildFile section */
-		4D208C1F1882E49700450167 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D208C1E1882E49700450167 /* main.m */; };
-		4DD0EFF01872D51F00DC2102 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DD0EFEF1872D51F00DC2102 /* Foundation.framework */; };
-/* End PBXBuildFile section */
-
-/* Begin PBXFileReference section */
-		4D208C1E1882E49700450167 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = SOURCE_ROOT; };
-		4D208C201882E49F00450167 /* clitest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "clitest-Prefix.pch"; sourceTree = SOURCE_ROOT; };
-		4DD0EFEC1872D51F00DC2102 /* clitest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = clitest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4DD0EFEF1872D51F00DC2102 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-/* End PBXFileReference section */
-
-/* Begin PBXFrameworksBuildPhase section */
-		4DD0EFE91872D51F00DC2102 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4DD0EFF01872D51F00DC2102 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXFrameworksBuildPhase section */
-
-/* Begin PBXGroup section */
-		4DD0EFE31872D51F00DC2102 = {
-			isa = PBXGroup;
-			children = (
-				4D208C1E1882E49700450167 /* main.m */,
-				4D208C201882E49F00450167 /* clitest-Prefix.pch */,
-				4DD0EFEF1872D51F00DC2102 /* Foundation.framework */,
-				4DD0EFED1872D51F00DC2102 /* Products */,
-			);
-			sourceTree = "<group>";
-		};
-		4DD0EFED1872D51F00DC2102 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				4DD0EFEC1872D51F00DC2102 /* clitest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-/* End PBXGroup section */
-
-/* Begin PBXNativeTarget section */
-		4DD0EFEB1872D51F00DC2102 /* clitest */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 4DD0EFFA1872D51F00DC2102 /* Build configuration list for PBXNativeTarget "clitest" */;
-			buildPhases = (
-				4DD0EFE81872D51F00DC2102 /* Sources */,
-				4DD0EFE91872D51F00DC2102 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = clitest;
-			productName = clitest;
-			productReference = 4DD0EFEC1872D51F00DC2102 /* clitest */;
-			productType = "com.apple.product-type.tool";
-		};
-/* End PBXNativeTarget section */
-
-/* Begin PBXProject section */
-		4DD0EFE41872D51F00DC2102 /* Project object */ = {
-			isa = PBXProject;
-			attributes = {
-				LastUpgradeCheck = 0500;
-				ORGANIZATIONNAME = "iwascoding GmbH";
-			};
-			buildConfigurationList = 4DD0EFE71872D51F00DC2102 /* Build configuration list for PBXProject "clitest" */;
-			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
-			hasScannedForEncodings = 0;
-			knownRegions = (
-				en,
-			);
-			mainGroup = 4DD0EFE31872D51F00DC2102;
-			productRefGroup = 4DD0EFED1872D51F00DC2102 /* Products */;
-			projectDirPath = "";
-			projectRoot = "";
-			targets = (
-				4DD0EFEB1872D51F00DC2102 /* clitest */,
-			);
-		};
-/* End PBXProject section */
-
-/* Begin PBXSourcesBuildPhase section */
-		4DD0EFE81872D51F00DC2102 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4D208C1F1882E49700450167 /* main.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXSourcesBuildPhase section */
-
-/* Begin XCBuildConfiguration section */
-		4DD0EFF81872D51F00DC2102 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx;
-			};
-			name = Debug;
-		};
-		4DD0EFF91872D51F00DC2102 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				SDKROOT = macosx;
-			};
-			name = Release;
-		};
-		4DD0EFFB1872D51F00DC2102 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "clitest-Prefix.pch";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		4DD0EFFC1872D51F00DC2102 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "clitest-Prefix.pch";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-/* End XCBuildConfiguration section */
-
-/* Begin XCConfigurationList section */
-		4DD0EFE71872D51F00DC2102 /* Build configuration list for PBXProject "clitest" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				4DD0EFF81872D51F00DC2102 /* Debug */,
-				4DD0EFF91872D51F00DC2102 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		4DD0EFFA1872D51F00DC2102 /* Build configuration list for PBXNativeTarget "clitest" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				4DD0EFFB1872D51F00DC2102 /* Debug */,
-				4DD0EFFC1872D51F00DC2102 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-/* End XCConfigurationList section */
-	};
-	rootObject = 4DD0EFE41872D51F00DC2102 /* Project object */;
-}
+# To "compress" a PBX file for use here use the following command:
+# % gzip --stdout ${PBXFile} | base64 --break=64
+cat <<EOF | base64 --decode | gunzip --stdout > "$1"
+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
 EOF
 }
 
