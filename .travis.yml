@@ -1,0 +1,3 @@
+language: objective-c
+install: /bin/true
+script: test.bash
