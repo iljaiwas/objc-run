@@ -1,3 +1,3 @@
 language: objective-c
-install: /bin/true
+install: /usr/bin/true
 script: test.bash
