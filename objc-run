@@ -7,7 +7,7 @@ function main
 		exit 1
 	fi
 
-	#check if the source file contains an embedded podfile for CocoaPods
+	# check if the source file contains an embedded podfile for CocoaPods
 
 	podstart=`awk '/podfile-start/{print NR+1}' "$1"`
 	podend=`awk '/podfile-end/{print NR-1}' "$1"`
@@ -67,17 +67,17 @@ function handleSourceFileWithCocoaPods
 	fi
 	
 	# check if a  temporary project directory already exists, if not create it
-	sourePathHash=`md5 -qs "$filepath"`
-	projectDirPath="${TMPDIR}objc-run/$sourePathHash"
+	sourcePathHash=`md5 -qs "$filepath"`
+	projectDirPath="${TMPDIR}objc-run/$sourcePathHash"
 	if [ ! -d $projectDirPath ]
 	then
 		createProjectDirectory "$projectDirPath"
 	fi
 
-	#copy source file into temp dir, removing shebang
+	# copy source file into temp dir, removing shebang
 	awk 'NR>1 || !/^#!/' "$filepath" > "$projectDirPath/main.m"
 	
-	#extract embedded podfile and save it into projectdir
+	# extract embedded podfile and save it into projectdir
 	podstart=`awk '/podfile-start/{print NR+1}' $filepath`
 	podend=`awk '/podfile-end/{print NR-1}' $filepath`
 	sed -n ${podstart},${podend}p $filepath > "$projectDirPath/podfile.new"
@@ -124,18 +124,17 @@ function handleSourceFileWithCocoaPods
 
 function writePCHfile
 {
-read -d '' String <<"EOF"
+cat <<EOF > "$1"
 #ifdef __OBJC__
 	#import <Foundation/Foundation.h>
 #endif
 
 EOF
-echo "${String}" > $1
 }
 
 function writePBXFile
 {
-read -d '' String <<"EOF"
+cat <<EOF > "$1"
 // !$*UTF8*$!
 {
 	archiveVersion = 1;
@@ -356,15 +355,12 @@ read -d '' String <<"EOF"
 	};
 	rootObject = 4DD0EFE41872D51F00DC2102 /* Project object */;
 }
-
 EOF
-
-echo "${String}" > $1
 }
 
 function createXcodeProjectPackage
 {
-	mkdir "$1"
+	mkdir -p "$1"
 	writePBXFile "$1/project.pbxproj"
 }
 
