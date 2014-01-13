@@ -364,7 +364,7 @@ echo "${String}" > $1
 
 function createXcodeProjectPackage
 {
-	mkdir "$1"
+	mkdir -p "$1"
 	writePBXFile "$1/project.pbxproj"
 }
 
