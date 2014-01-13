@@ -26,8 +26,12 @@ int main(int argc, const char * argv[])
 		}];
 		[server addGlobalMiddleware:router];
 		[server startListening];
-		while(YES){
-			[[NSRunLoop mainRunLoop] run];
+		
+		if (![[[ NSProcessInfo processInfo] arguments] containsObject:@"-quit"])
+		{
+			while(YES){
+				[[NSRunLoop mainRunLoop] run];
+			}
 		}
 	}
     return 0;

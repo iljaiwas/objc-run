@@ -117,8 +117,6 @@ function handleSourceFileWithCocoaPods
 		exit 1
 	fi
 	
-	open "$projectDirPath"
-
 	exit 0
 }
 

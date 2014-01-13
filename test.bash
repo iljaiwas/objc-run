@@ -18,4 +18,9 @@ diff <( ./objc-run examples/when-file-already-exists.m 2>&1 ) - << EOF
 objc-run: file already exists at /when-file-already-exists ... exiting
 EOF
 
+if which pod >/dev/null; then
+    ./objc-run examples/MACollectionUtilitiesTest.m
+     ./objc-run examples/CocoaPodsTest.m -quit
+fi
+
 echo Done
