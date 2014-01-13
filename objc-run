@@ -67,8 +67,8 @@ function handleSourceFileWithCocoaPods
 	fi
 	
 	# check if a  temporary project directory already exists, if not create it
-	sourePathHash=`md5 -qs "$filepath"`
-	projectDirPath="${TMPDIR}objc-run/$sourePathHash"
+	sourcePathHash=`md5 -qs "$filepath"`
+	projectDirPath="${TMPDIR}objc-run/$sourcePathHash"
 	if [ ! -d $projectDirPath ]
 	then
 		createProjectDirectory "$projectDirPath"
