@@ -124,18 +124,17 @@ function handleSourceFileWithCocoaPods
 
 function writePCHfile
 {
-read -d '' String <<"EOF"
+cat <<EOF > "$1"
 #ifdef __OBJC__
 	#import <Foundation/Foundation.h>
 #endif
 
 EOF
-echo "${String}" > $1
 }
 
 function writePBXFile
 {
-read -d '' String <<"EOF"
+cat <<EOF > "$1"
 // !$*UTF8*$!
 {
 	archiveVersion = 1;
@@ -356,10 +355,7 @@ read -d '' String <<"EOF"
 	};
 	rootObject = 4DD0EFE41872D51F00DC2102 /* Project object */;
 }
-
 EOF
-
-echo "${String}" > $1
 }
 
 function createXcodeProjectPackage
