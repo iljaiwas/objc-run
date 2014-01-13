@@ -27,7 +27,7 @@ You can omit the explicit invocation of objc-run on the command line and launch 
 
 Just insert this as first line in your .m file:
 
-	#!/usr/bin/env /usr/bin/objc-run
+	#!/usr/bin/env objc-run
 	
 If you have installed objc-run in a directory different from /usr/bin, you'll need to adjust the path accordingly.
 

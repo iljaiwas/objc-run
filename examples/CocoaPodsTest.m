@@ -1,4 +1,4 @@
-#!/usr/bin/env /usr/bin/objc-run
+#!/usr/bin/env objc-run
 
 /*
 podfile-start
