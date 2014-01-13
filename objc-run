@@ -182,6 +182,10 @@ function createXcodeProjectPackage
 {
 	mkdir -p "$1"
 	writePBXFile "$1/project.pbxproj"
+	schemesDir="$1/xcuserdata/$USER.xcuserdatad/xcschemes"
+	mkdir -p "$schemesDir"
+	writeXcschemeFile "$schemesDir/clitest.xcscheme"
+	writeXcschememanagementFile "$schemesDir/xcschememanagement.plist"
 }
 
 function createProjectDirectory
@@ -189,6 +193,40 @@ function createProjectDirectory
 	mkdir -p "$1"
 	createXcodeProjectPackage "$1/clitest.xcodeproj"
 	writePCHfile "$1/clitest-Prefix.pch"
+}
+
+function writeXcschemeFile
+{
+cat <<EOF | base64 --decode | gunzip --stdout > "$1"
+H4sICIoH1FIAA2NsaXRlc3QueGNzY2hlbWUA7ZZtb9owEMff91NEeT8I3apVU0oF
+DUiVWKmg3cNLEx+pN8eO/MBKP33tOIEY2MjWSdOk8gbl7n93zuVnn+PLx5wGKxCS
+cHYR9jpRGABLOSYsuwjv78ZvzsPL/kk8Tx8gh5MgCCZIqvsiEwjDJxcWXARhdBZF
+oXWvtrZe523Yt7Z4qAnFg1QZh302vwIJRClQ8gSlEy0oSBv0dTQPK83COq7zgpKU
+qAQKYNgsjWx1/UrYzD9iShhJ7TrgXW9ddZExF3cglXnnnSX4mplm7JjmVvAlocdU
+A5E+kNVRFUN0/dRQ9T1ZvOncDJYgTG/A85vfRnFtWqfIkoCwuQpBciTW4Z6cajA+
+pnz5uySJRuPRsHf+/jQ5642jKLk67UWn+/F1uRuUg41MKVGmsT8vdEy4eTN8xZlC
+hLkVpfXDhyqw82iYNSn5t90mdfe71ISju0vHBqpdT02V53AWC4+HtwQKqQKcwEJn
+GQi/n1/sWju1b8w1w8gGb0ydySQZhju5Jkgzswvb5qrlfq4Hrim+l+C8blcPRCZH
+bHVo95mmL0mmRZnSCspC241nX7zcutuu7Zs+olTw0WOBmKw71g7g36H3Rei247Yd
+tC8j9le4xt0DnXQNb8LoPu1/gSN1FKo1LfsZ1XYt4UpLxfPPXHw3519ChKnJxdqq
+bqZtEK0kJGNcgLy1U0kqs9K5QgqmzC3HT4dtYMJTnRtdNdv2j2gztviPCU/LenOS
+a7qpvD+T7Hc0EwHrVNnhYR9f+f9z/o/1NB5gTOzXQHRa2P/GuXTYFXeb28WZ3AgH
+fwe1PzglWgG+45z6X+KvsD0zmw9JaEnsK4v/isW460HkbO4653N1dMoacJthVaby
++tgm0w4wAlaAaBV+zaYiQ8xcwYVHjCnZzG9u/13He//kGXeRevcvDAAA
+EOF
+}
+
+function writeXcschememanagementFile
+{
+cat <<EOF | base64 --decode | gunzip --stdout > "$1"
+H4sICIoH1FIAA3hjc2NoZW1lbWFuYWdlbWVudC5wbGlzdAB1kMtuwjAQRdfwFa73
+ZBLUB6pCEOCgIqE2EmHRZeqMwGoelj0p8Pd1oClFoivPjM9cHzmcHMqCfaGxqq7G
+PPB8zrCSda6q7Zhv0sVgxCdRP7wTb/P0PYmZLpQllmxmq+Wc8QHAVOsCAUQqWLJa
+rlPmMgDiV874jkg/A+z3ey9rKU/WZQtaSEyt0dBx5cIGbsHLKefumXP6lY6b5kpS
+1O+Fn3iM1nKHJW4smjVlhCG0Q3f3w5whWShCS95B2hPeURfszNUmR/OiKvoFeqHr
+cIsmegyhK9tF6CTgyqbR2qC1s0YVefZR4LShWhrMyPnfdrsXwo8X8SwYPQ3FQ7Dw
+fTEfBv7wP0dtVJmZ4x9DMg3CTanLefrIqP8NsMnKEN8BAAA=
+EOF
 }
 
 main "$@"
