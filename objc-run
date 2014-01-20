@@ -80,24 +80,24 @@ function handleSourceFileWithCocoaPods
 	# extract embedded podfile and save it into projectdir
 	podstart=`awk '/podfile-start/{print NR+1}' $filepath`
 	podend=`awk '/podfile-end/{print NR-1}' $filepath`
-	sed -n ${podstart},${podend}p $filepath > "$projectDirPath/podfile.new"
+	sed -n ${podstart},${podend}p $filepath > "$projectDirPath/Podfile.new"
 	
 	(
 		cd "$projectDirPath"
 
-		if [ ! -f podfile ]
+		if [ ! -f Podfile ]
 		then
-			mv podfile.new podfile
+			mv Podfile.new Podfile
 			echo "Installing pod"
 			pod install
 		else
-			if ! diff podfile.new podfile >/dev/null 2>&1
+			if ! diff Podfile.new Podfile >/dev/null 2>&1
 			then
 				echo "Updating pod"
-				mv -f podfile.new podfile
+				mv -f Podfile.new Podfile
 				pod update
 			else
-				rm podfile.new
+				rm Podfile.new
 			fi
 		fi
 		
