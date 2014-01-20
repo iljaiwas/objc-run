@@ -3,6 +3,8 @@ set -o errexit  # stop the script at the first error
 
 export PATH=$PATH:.
 
+(cd "$(dirname $0)"
+
 diff <( objc-run examples/hello.m ) - << EOF
 hello world
 EOF
@@ -26,3 +28,4 @@ if which pod >/dev/null; then
 fi
 
 echo Done
+)
