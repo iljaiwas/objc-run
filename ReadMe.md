@@ -1,4 +1,7 @@
+[![Build Status](https://travis-ci.org/iljaiwas/objc-run.png?branch=master)](https://travis-ci.org/iljaiwas/objc-run)
+
 #About objc-run
+
 
 objc-run is a shell script which compiles and executes Objective-C source code files. It integrates with [CocoaPods](http://cocoapods.org).
 
