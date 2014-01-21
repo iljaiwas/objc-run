@@ -8,7 +8,12 @@ objc-run is a shell script which compiles and executes Objective-C source code f
 It's perfect for small programming tasks you want to handle in Objective-C, that don't justify setting up a complete Xcode project, e.g. manipulating plist files. Think of it as [CodeRunner](http://krillapps.com/coderunner/) without an user interface. 
 
 ##Installation
-Just download the objc-run shell script file and install it in a directory that's in your $PATH. Make sure the executable bit is set like this:
+
+If you have [homebrew](http://brew.sh) installed, just run
+    
+	brew install objc-run
+
+Otherwise, download the objc-run shell script file and install it in a directory that's in your $PATH. Make sure the executable bit is set like this:
 	
 	chmod u+x objc-run
 
