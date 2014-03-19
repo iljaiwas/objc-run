@@ -107,7 +107,7 @@ function handleSourceFileWithCocoaPods
 
 	# on clang success, run compiled application and remove it
 	if [[ $xcodebuildExitCode -eq 0 ]]; then 
-		cp "$projectDirPath/build/usr/local/bin/clitest" $target
+		cp "$projectDirPath/build/usr/local/bin/clitest" "$target"
 		trap '{ rm -f "$target" ; exit 1; }' INT
 		"$target" "$@"
 		trap '' INT
