@@ -19,6 +19,7 @@ logExit () {
  EXISTSOUT="objc-run: file already exists at /when-file-already-exists ... exiting"
   PODTEST1="examples/MACollectionUtilitiesTest.m"
   PODTEST2="examples/CocoaPodsTest.m"
+  PODTEST3="examples/CocoaPodsTest with weird name.m"
 
 logC "Testing output of $HELLO is $HELLOOUT"
 diff <( objc-run $HELLO ) - << EOF
@@ -52,6 +53,9 @@ if which pod >/dev/null; then
     logC "Running CocoaPods Test 2 ... $PODTEST2 (with xcodebuild output supressed)"
     objc-run $PODTEST2 -quit > /dev/null
     logExit $? $PODTEST2
+    logC "Running CocoaPods Test 3 ... $PODTEST3 (with xcodebuild output supressed)"
+    objc-run "$PODTEST3" -quit > /dev/null
+    logExit $? $PODTEST3
 fi
 
 logC "All tests passed! Done." 6
