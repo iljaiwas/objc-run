@@ -1,5 +1,5 @@
 #!/bin/bash
-
+#set -xe
 function main
 {
 	if [[ $# -lt 1 ]]; then 
@@ -78,9 +78,9 @@ function handleSourceFileWithCocoaPods
 	awk 'NR>1 || !/^#!/' "$filepath" > "$projectDirPath/main.m"
 	
 	# extract embedded podfile and save it into projectdir
-	podstart=`awk '/podfile-start/{print NR+1}' $filepath`
-	podend=`awk '/podfile-end/{print NR-1}' $filepath`
-	sed -n ${podstart},${podend}p $filepath > "$projectDirPath/Podfile.new"
+	podstart=`awk '/podfile-start/{print NR+1}' "$filepath"`
+	podend=`awk '/podfile-end/{print NR-1}' "$filepath"`
+	sed -n ${podstart},${podend}p "$filepath" > "$projectDirPath/Podfile.new"
 	
 	(
 		cd "$projectDirPath"
