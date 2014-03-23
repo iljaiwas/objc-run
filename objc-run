@@ -67,8 +67,9 @@ function handleSourceFileWithCocoaPods
 	fi
 	
 	# check if a  temporary project directory already exists, if not create it
+        selfScriptHash=`md5 -q $BASH_SOURCE`
 	sourcePathHash=`md5 -qs "$filepath"`
-	projectDirPath="${TMPDIR}objc-run/$sourcePathHash"
+	projectDirPath="${TMPDIR}objc-run/$selfScriptHash/$sourcePathHash"
 	if [ ! -d $projectDirPath ]
 	then
 		createProjectDirectory "$projectDirPath"
@@ -78,9 +79,9 @@ function handleSourceFileWithCocoaPods
 	awk 'NR>1 || !/^#!/' "$filepath" > "$projectDirPath/main.m"
 	
 	# extract embedded podfile and save it into projectdir
-	podstart=`awk '/podfile-start/{print NR+1}' $filepath`
-	podend=`awk '/podfile-end/{print NR-1}' $filepath`
-	sed -n ${podstart},${podend}p $filepath > "$projectDirPath/Podfile.new"
+	podstart=`awk '/podfile-start/{print NR+1}' "$filepath"`
+	podend=`awk '/podfile-end/{print NR-1}' "$filepath"`
+	sed -n ${podstart},${podend}p "$filepath" > "$projectDirPath/Podfile.new"
 	
 	(
 		cd "$projectDirPath"
@@ -107,7 +108,7 @@ function handleSourceFileWithCocoaPods
 
 	# on clang success, run compiled application and remove it
 	if [[ $xcodebuildExitCode -eq 0 ]]; then 
-		cp "$projectDirPath/build/usr/local/bin/clitest" $target
+		cp "$projectDirPath/build/usr/local/bin/clitest" "$target"
 		trap '{ rm -f "$target" ; exit 1; }' INT
 		"$target" "$@"
 		trap '' INT
