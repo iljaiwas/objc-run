@@ -1,5 +1,5 @@
 #!/bin/bash
-#set -xe
+
 function main
 {
 	if [[ $# -lt 1 ]]; then 
@@ -67,8 +67,9 @@ function handleSourceFileWithCocoaPods
 	fi
 	
 	# check if a  temporary project directory already exists, if not create it
+        selfScriptHash=`md5 -q $BASH_SOURCE`
 	sourcePathHash=`md5 -qs "$filepath"`
-	projectDirPath="${TMPDIR}objc-run/$sourcePathHash"
+	projectDirPath="${TMPDIR}objc-run/$selfScriptHash/$sourcePathHash"
 	if [ ! -d $projectDirPath ]
 	then
 		createProjectDirectory "$projectDirPath"
