@@ -1,4 +1,4 @@
 language: objective-c
-rvm: 1.9.3
+rvm: 2.0.0
 install: /usr/bin/true
 script: ./test.bash
